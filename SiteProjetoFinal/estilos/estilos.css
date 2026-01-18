@@ -1,0 +1,719 @@
+﻿/* ================================================== */
+/* VARIÁVEIS E BASE */
+/* ================================================== */
+
+/* Centraliza cores, sombras e tipografia em variáveis CSS
+   Evita repetir valores e facilita manter o tema consistente */
+:root {
+  --cor-fundo: #f7f7f8;
+  --cor-superficie: #ffffff;
+  --cor-borda: #e5e7eb;
+  --cor-borda-forte: #d1d5db;
+  --cor-texto: #0f172a;
+  --cor-suave: #6b7280;
+  --cor-primaria: #0f766e;
+  --cor-primaria-escura: #0b4f4a;
+  --cor-alerta: #dc2626;
+  --raio: 14px;
+  --sombra-suave: 0 10px 25px rgba(15, 23, 42, 0.08);
+  --fonte-titulo: "Space Grotesk", sans-serif;
+  --fonte-corpo: "Manrope", sans-serif;
+}
+
+/* Torna o cálculo de tamanhos mais previsível em todo o site
+   `border-box` inclui padding e bordas no tamanho final */
+* {
+  box-sizing: border-box;
+}
+
+/* Usa flex em coluna para garantir rodapé no fundo do ecrã
+   O `main` cresce com `flex: 1` e o `margin-top: auto` empurra o rodapé */
+body.fundo-padrao {
+  font-family: var(--fonte-corpo);
+  background: var(--cor-fundo);
+  color: var(--cor-texto);
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Mantém o conteúdo mais compacto entre a navbar e o rodapé
+   `padding` pequeno dá respiro sem criar espaço vazio */
+main {
+  padding: 0.75rem 0;
+  flex: 1;
+}
+
+/* Uniformiza títulos com uma fonte própria e um toque mais moderno
+   `letter-spacing` ligeiro melhora a leitura em tamanhos grandes */
+h1,
+h2,
+h3,
+h4,
+h5 {
+  font-family: var(--fonte-titulo);
+  letter-spacing: -0.4px;
+}
+
+/* Melhora a legibilidade do texto corrido
+   `line-height` mais alto ajuda em blocos de texto maiores */
+p {
+  line-height: 1.7;
+}
+
+/* ================================================== */
+/* BARRA DE NAVEGAçãO E FOOTER */
+/* ================================================== */
+/* Ajusta componentes do Bootstrap para combinar com a identidade do projeto
+   Mantém a navegação consistente em todas as páginas */
+.nav-hotel {
+  background: var(--cor-superficie);
+  border-bottom: 1px solid var(--cor-borda);
+}
+
+/* Define tipografia e cor da marca na navbar
+   `!important` garante prioridade sobre estilos do Bootstrap */
+.marca-hotel {
+  font-family: var(--fonte-titulo);
+  font-weight: 700;
+  color: var(--cor-texto) !important;
+}
+
+/* Estilo base dos links do menu
+   Mantém contraste e reforça o peso para leitura rápida */
+.link-navegacao {
+  font-weight: 600;
+  color: var(--cor-texto) !important;
+}
+
+/* Hover e estado ativo com a cor principal do site
+   Dá feedback imediato sem mudar a estrutura do menu */
+.link-navegacao:hover {
+  color: var(--cor-primaria) !important;
+}
+
+.link-navegacao.active {
+  color: var(--cor-primaria) !important;
+}
+
+/* Rodapé minimalista com borda superior para separar do conteúdo
+   `margin-top: auto` funciona com o `body` em flex para ficar sempre em baixo */
+.rodape {
+  background: var(--cor-superficie);
+  border-top: 1px solid var(--cor-borda);
+  color: var(--cor-texto);
+  margin-top: auto;
+}
+
+/* Links do rodapé com estilo discreto
+   Mantém consistência com o resto do site */
+.rodape a {
+  color: var(--cor-texto);
+  text-decoration: none;
+}
+
+.rodape a:hover {
+  color: var(--cor-primaria);
+}
+
+/* Título do rodapé com a mesma fonte dos títulos do site
+   Reforça identidade visual */
+.rodape-titulo {
+  font-family: var(--fonte-titulo);
+}
+
+/* Texto do rodapé com cor suave e bom espaçamento
+   Ajuda a não competir com o conteúdo principal */
+.texto-rodape {
+  color: var(--cor-suave);
+  font-weight: 600;
+  letter-spacing: 0.2px;
+  font-size: 0.9rem;
+  margin: 0;
+}
+
+/* ================================================== */
+/* DESTAQUE E SEÇÕES */
+/* ================================================== */
+/* Cartão principal com sombra suave para dar profundidade
+   Usa borda e raio para manter o estilo admin minimalista */
+.destaque-gestao {
+  background: var(--cor-superficie);
+  border-radius: var(--raio);
+  border: 1px solid var(--cor-borda);
+  padding: 2.5rem;
+  box-shadow: var(--sombra-suave);
+}
+
+/* Badge do bloco de destaque com a cor principal em versão suave
+   Evita cores muito fortes e mantém um look limpo */
+.destaque-gestao .badge {
+  background: rgba(15, 118, 110, 0.08);
+  border: 1px solid rgba(15, 118, 110, 0.2);
+  color: var(--cor-primaria);
+}
+
+/* Blocos secundários com menos padding e sem sombra
+   Serve para secções informativas e listas */
+.destaque-secundario {
+  background: var(--cor-superficie);
+  border-radius: var(--raio);
+  border: 1px solid var(--cor-borda);
+  padding: 1.75rem;
+}
+
+/* Pequena linha de destaque abaixo dos títulos das secções
+   Substitui sublinhados pesados por um detalhe discreto */
+.separador-titulo {
+  width: 52px;
+  height: 2px;
+  background: var(--cor-primaria);
+  border-radius: 999px;
+  margin-top: 0.75rem;
+}
+
+/* ================================================== */
+/* CARTOES E COMPONENTES */
+/* ================================================== */
+/* Base partilhada para cartões do sistema
+   Mantém bordas e raios consistentes em todas as páginas */
+.cartao-atalho,
+.cartao-indicador,
+.cartao-quarto,
+.cartao-tarifa,
+.cartao-informacao {
+  border: 1px solid var(--cor-borda);
+  border-radius: var(--raio);
+  box-shadow: none;
+  background: var(--cor-superficie);
+}
+
+/* Hover clássico nos atalhos quando for usado
+   Realça o cartão sem alterar tamanhos */
+.cartao-atalho:hover {
+  border-color: rgba(15, 118, 110, 0.4);
+  box-shadow: 0 12px 28px rgba(15, 23, 42, 0.08);
+}
+
+/* Na página inicial o hover do atalho é controlado por `.hover-suave`
+   Assim evita somar dois efeitos diferentes no mesmo cartão */
+#pagina-inicio .cartao-atalho:hover {
+  border-color: var(--cor-borda);
+  box-shadow: none;
+}
+
+/* Efeito de hover suave para levantar blocos e dar feedback visual
+   Usa `transform` para não provocar reflow e ficar mais fluido */
+#pagina-inicio .hover-suave {
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+#pagina-inicio .hover-suave:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 20px rgba(15, 23, 42, 0.08);
+}
+
+/* Repete o mesmo hover nas restantes páginas, limitado pelo id do body
+   Evita que outras páginas herdem este efeito */
+#pagina-painel .hover-suave {
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+#pagina-painel .hover-suave:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 20px rgba(15, 23, 42, 0.08);
+}
+
+#pagina-reservas .hover-suave {
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+#pagina-reservas .hover-suave:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 20px rgba(15, 23, 42, 0.08);
+}
+
+#pagina-quartos .hover-suave {
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+#pagina-quartos .hover-suave:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 20px rgba(15, 23, 42, 0.08);
+}
+
+#pagina-tarifas .hover-suave {
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+#pagina-tarifas .hover-suave:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 20px rgba(15, 23, 42, 0.08);
+}
+
+/* Tipografia do valor nos cartões KPI do painel
+   Dá destaque ao número sem precisar de cores fortes */
+.cartao-indicador .valor {
+  font-size: 1.8rem;
+  font-weight: 700;
+  color: var(--cor-texto);
+}
+
+/* Badge genérica para estados de reservas e quartos
+   Usa `letter-spacing` leve para um visual mais admin */
+.badge-estado {
+  font-weight: 600;
+  letter-spacing: 0.2px;
+}
+
+/* Estado ativa com verde suave para não cansar o olho
+   Borda leve ajuda a destacar sem chamar demasiado a atenção */
+.estado-ativa {
+  background: rgba(15, 118, 110, 0.12);
+  color: var(--cor-primaria);
+  border: 1px solid rgba(15, 118, 110, 0.2);
+}
+
+/* Estado cancelada com vermelho suave para sinalizar sem agressividade
+   Mantém coerência com botões e alertas de erro */
+.estado-cancelada {
+  background: rgba(220, 38, 38, 0.12);
+  color: #991b1b;
+  border: 1px solid rgba(220, 38, 38, 0.3);
+}
+
+/* Badge para qualificar ocupação (baixa, média, alta)
+   Serve de resumo rápido no painel */
+.badge-ocupacao {
+  font-weight: 600;
+}
+
+.ocupacao-baixa {
+  background: rgba(15, 118, 110, 0.12);
+  color: var(--cor-primaria);
+}
+
+.ocupacao-media {
+  background: rgba(245, 158, 11, 0.16);
+  color: #b45309;
+}
+
+.ocupacao-alta {
+  background: rgba(220, 38, 38, 0.16);
+  color: #991b1b;
+}
+
+/* Cores das barras de progresso por nível de ocupação
+   Mantém consistência com as badges */
+.barra-baixa {
+  background: var(--cor-primaria);
+}
+
+.barra-media {
+  background: #f59e0b;
+}
+
+.barra-alta {
+  background: #dc2626;
+}
+
+/* Alertas temporários com fade in/out via `opacity`
+   As classes são alternadas por JavaScript com `requestAnimationFrame` e `setTimeout` */
+.alerta-temporario {
+  border-radius: 10px;
+  opacity: 0;
+  transition: opacity 0.25s ease;
+}
+
+.alerta-temporario.alerta-visivel {
+  opacity: 1;
+}
+
+.alerta-temporario.alerta-saida {
+  opacity: 0;
+}
+
+/* Contentor fixo para alertas no canto inferior direito
+   Evita mexer no layout do formulário quando há mensagens */
+.alertas-flutuantes {
+  position: fixed;
+  right: 1.5rem;
+  bottom: 1.5rem;
+  z-index: 1080;
+  max-width: 360px;
+}
+
+/* Sombra igual aos cartões para manter o estilo consistente
+   `margin: 0` evita espaçamento extra entre alertas */
+.alertas-flutuantes .alerta-temporario {
+  box-shadow: var(--sombra-suave);
+  margin: 0;
+}
+
+/* ================================================== */
+/* TABELAS E FORMS */
+/* ================================================== */
+/* Wrapper para tabelas do sistema com borda e cantos arredondados
+   `overflow: hidden` impede linhas de ultrapassar os cantos */
+.tabela-sistema {
+  background: var(--cor-superficie);
+  border-radius: var(--raio);
+  border: 1px solid var(--cor-borda);
+  overflow: hidden;
+}
+
+/* Variante usada quando a tabela já está dentro de um cartão com borda
+   Evita borda dupla e fica mais limpo */
+.tabela-sistema.sem-borda {
+  border: none;
+}
+
+/* Cabeçalho com fundo suave para separar colunas
+   Mantém contraste sem usar preto */
+.tabela-sistema thead {
+  background: #f1f5f9;
+  color: var(--cor-texto);
+  font-weight: 600;
+}
+
+/* Em ecrãs menores permite scroll horizontal sem apertar colunas
+   Ajuda a manter a tabela legível no mobile */
+@media (max-width: 1200px) {
+  .tabela-scroll {
+    overflow-x: auto;
+    overflow-y: hidden;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .tabela-scroll table {
+    min-width: 720px;
+  }
+}
+
+/* Linha de borda mais forte na tabela de reservas
+   Aumenta a perceção de separação entre registos */
+.tabela-reservas {
+  border-color: var(--cor-borda-forte);
+}
+
+/* Mantém as linhas internas com cantos arredondados preservados
+   `border-collapse: separate` evita cortar os cantos no container */
+.tabela-linhas {
+  border-collapse: separate;
+  border-spacing: 0;
+}
+
+.tabela-linhas thead th {
+  border-bottom: 1px solid var(--cor-borda-forte);
+}
+
+.tabela-linhas tbody tr:not(:last-child) td {
+  border-bottom: 1px solid var(--cor-borda-forte);
+}
+
+.tabela-linhas tfoot th {
+  border-top: 1px solid var(--cor-borda-forte);
+}
+
+/* Alinhamento ao centro por defeito para tabelas de gestão
+   As exceções usam `.text-start` e `.text-end` */
+.tabela-linhas th,
+.tabela-linhas td {
+  text-align: center;
+}
+
+.tabela-linhas .text-start {
+  text-align: left !important;
+}
+
+.tabela-linhas .text-end {
+  text-align: right !important;
+}
+
+/* Coluna do progresso com padding menor para reduzir espaço vazio
+   Ajuda a manter todas as colunas equilibradas */
+.celula-progresso {
+  text-align: center !important;
+  padding-left: 0.5rem;
+  padding-right: 0.5rem;
+}
+
+/* Layout interno do progresso com percentagem + barra alinhadas
+   Flex permite centrar e manter espaços consistentes */
+.progresso-linha {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  justify-content: center;
+}
+
+/* Barra com limites para não ficar enorme nem desaparecer
+   `min-width` garante visibilidade mesmo com pouco espaço */
+.progresso-linha .progress {
+  flex: 1;
+  min-width: 90px;
+  max-width: 100%;
+}
+
+/* Percentagem com largura mínima para evitar saltos entre linhas
+   `3ch` guarda espaço para valores como 100% */
+.progresso-valor {
+  min-width: 3ch;
+  font-weight: 600;
+  color: var(--cor-texto);
+}
+
+/* Tabela do painel com layout fixo para reduzir variações de largura
+   Ajuda a manter colunas mais equilibradas */
+.tabela-painel {
+  table-layout: fixed;
+  width: 100%;
+}
+
+.tabela-painel th,
+.tabela-painel td {
+  padding-left: 0.6rem;
+  padding-right: 0.6rem;
+}
+
+/* Cartão de formulário com o mesmo estilo dos restantes blocos
+   Mantém consistência visual na página de reservas */
+.formulario-cartao {
+  background: var(--cor-superficie);
+  border-radius: var(--raio);
+  padding: 1.8rem;
+  border: 1px solid var(--cor-borda);
+}
+
+/* Inputs com raio e borda suave para um look moderno
+   Usa `.form-control` e `.form-select` do Bootstrap */
+.form-control,
+.form-select {
+  border-radius: 10px;
+  border-color: var(--cor-borda);
+}
+
+/* Realce de foco com a cor principal
+   Indica o campo ativo de forma consistente com o tema */
+.form-control:focus,
+.form-select:focus {
+  border-color: var(--cor-primaria);
+  box-shadow: 0 0 0 0.2rem rgba(15, 118, 110, 0.12);
+}
+
+/* Caixa informativa usada em formulários para instruções curtas
+   Borda tracejada dá destaque sem pesar no design */
+.campo-resumo {
+  background: #f8fafc;
+  border: 1px dashed var(--cor-borda);
+  border-radius: 10px;
+  padding: 0.75rem 1rem;
+}
+
+/* Grelha de detalhes no modal (ex.: reserva e quarto)
+   `grid` adapta automaticamente o número de colunas ao espaço */
+.detalhe-grade {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 0.75rem 1.5rem;
+}
+
+/* Linha de detalhe com label + valor alinhados
+   `border-bottom` cria separadores simples e limpos */
+.detalhe-linha {
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+  padding-bottom: 0.35rem;
+  border-bottom: 1px solid var(--cor-borda);
+}
+
+/* Botão "X" dos modais com posição e opacidade controladas
+   Remove o realce azul do navegador para manter o visual minimalista */
+.botao-fechar-modal {
+  margin-right: 1.5rem;
+  opacity: 0.7;
+}
+
+.botao-fechar-modal:hover {
+  opacity: 0.7;
+}
+
+.botao-fechar-modal:focus,
+.botao-fechar-modal:focus-visible {
+  outline: none;
+  box-shadow: none;
+}
+
+.modal .btn-close:focus,
+.modal .btn-close:focus-visible {
+  outline: none;
+  box-shadow: none;
+}
+
+/* Aplica a mesma lógica no modal de tarifas para evitar hover/foco azul
+   Mantém o "X" discreto e consistente */
+#janela-tarifa .btn-close {
+  opacity: 0.7;
+}
+
+#janela-tarifa .btn-close:hover {
+  opacity: 0.7;
+}
+
+#janela-tarifa .btn-close:focus,
+#janela-tarifa .btn-close:focus-visible {
+  outline: none;
+  box-shadow: none;
+}
+
+/* Ajustes para um modal mais clean e moderno
+   Raios maiores e padding controlado */
+.modal-minimalista .modal-content {
+  border-radius: 16px;
+}
+
+.modal-minimalista .modal-body {
+  padding: 1.5rem;
+}
+
+/* Ações da tabela de reservas com largura mínima e sem quebra de texto
+   Evita botões a partirem e melhora a leitura */
+.acoes-reserva .botao-acao-secundaria {
+  min-width: 96px;
+  text-align: center;
+  white-space: nowrap;
+}
+
+.acoes-reserva .btn {
+  white-space: nowrap;
+}
+
+/* Texto auxiliar dentro de detalhes
+   Mantém hierarquia entre label e valor */
+.detalhe-linha .texto-secundario {
+  font-size: 0.9rem;
+}
+
+/* Valor de detalhe com mais peso para ser fácil de localizar
+   Alinha à direita para formar uma coluna visual */
+.detalhe-valor {
+  font-weight: 600;
+  color: var(--cor-texto);
+  text-align: right;
+}
+
+/* ================================================== */
+/* PAGINAS ESPECIFICAS */
+/* ================================================== */
+/* Lista de comodidades com recuo controlado
+   Evita espaçamento excessivo dentro dos cartões */
+.lista-comodidades {
+  padding-left: 1.2rem;
+  margin-bottom: 0;
+}
+
+/* Preço do quarto com destaque visual
+   Facilita a leitura rápida na gestão de quartos */
+.cartao-quarto .preco {
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: var(--cor-texto);
+}
+
+/* Multiplicador em destaque na gestão de tarifas
+   Ajuda a perceber rapidamente a sazonalidade */
+.cartao-tarifa .multiplicador {
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: var(--cor-texto);
+}
+
+/* ================================================== */
+/* UTILITARIOS */
+/* ================================================== */
+/* Texto secundário para descrições e ajuda
+   Mantém contraste mais suave sem perder legibilidade */
+.texto-secundario {
+  color: var(--cor-suave);
+}
+
+/* Botão primário baseado em variáveis do Bootstrap 5
+   Assim o hover e estados ficam consistentes sem repetir CSS em vários sítios */
+.btn-primario-personalizado {
+  --bs-btn-color: var(--cor-superficie);
+  --bs-btn-bg: var(--cor-primaria);
+  --bs-btn-border-color: var(--cor-primaria);
+  --bs-btn-hover-color: var(--cor-superficie);
+  --bs-btn-hover-bg: var(--cor-primaria-escura);
+  --bs-btn-hover-border-color: var(--cor-primaria-escura);
+  --bs-btn-active-color: var(--cor-superficie);
+  --bs-btn-active-bg: var(--cor-primaria-escura);
+  --bs-btn-active-border-color: var(--cor-primaria-escura);
+  --bs-btn-focus-shadow-rgb: 15, 118, 110;
+  background: var(--cor-primaria);
+  border: 1px solid var(--cor-primaria);
+  color: var(--cor-superficie);
+  text-decoration: none;
+}
+
+/* Garante que hover, foco e ativo mantêm sempre a mesma cor e sem sombras azuis
+   Evita o salto visual do foco padrão do browser */
+.btn-primario-personalizado:hover,
+.btn-primario-personalizado:focus,
+.btn-primario-personalizado:active,
+.btn-primario-personalizado:focus-visible {
+  background: var(--cor-primaria-escura);
+  color: var(--cor-superficie);
+  border-color: var(--cor-primaria-escura);
+  box-shadow: none;
+}
+
+/* Botão secundário com contorno da cor principal
+   Bom para ações neutras sem competir com o botão primário */
+.btn-secundario-personalizado {
+  background: transparent;
+  border: 1px solid var(--cor-primaria);
+  color: var(--cor-primaria);
+  text-decoration: none;
+}
+
+/* Hover do botão secundário com fundo muito leve
+   Dá feedback sem parecer um botão cheio */
+.btn-secundario-personalizado:hover,
+.btn-secundario-personalizado:focus,
+.btn-secundario-personalizado:active {
+  background: rgba(15, 118, 110, 0.08);
+  color: var(--cor-primaria-escura);
+  border-color: var(--cor-primaria-escura);
+}
+
+/* Override do `.btn-outline-primary` do Bootstrap para usar a cor do site
+   Mantém consistência quando um componente usar a classe padrão */
+.btn.btn-outline-primary {
+  border-color: var(--cor-primaria);
+  color: var(--cor-primaria);
+}
+
+.btn.btn-outline-primary:hover,
+.btn.btn-outline-primary:focus,
+.btn.btn-outline-primary:active,
+.btn.btn-outline-primary:focus-visible {
+  background: var(--cor-primaria);
+  color: var(--cor-superficie);
+  border-color: var(--cor-primaria);
+  box-shadow: none;
+}
+
+
+/* Ajustes rápidos para mobile
+   Reduz padding e tamanhos para caber melhor em ecrãs pequenos */
+@media (max-width: 768px) {
+  .destaque-gestao {
+    padding: 2rem 1.5rem;
+  }
+
+  .cartao-indicador .valor {
+    font-size: 1.5rem;
+  }
+}

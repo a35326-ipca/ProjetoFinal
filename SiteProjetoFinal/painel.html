@@ -1,0 +1,163 @@
+﻿<!DOCTYPE html>
+<html lang="pt-PT">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Gestão do Hotel G - Estatísticas</title>
+    <link rel="icon" type="image/png" href="imagens/logo.png" />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet" />
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" />
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css" rel="stylesheet" />
+ 
+    <link rel="stylesheet" href="estilos/estilos.css" />
+  </head>
+  <body id="pagina-painel" class="fundo-padrao">
+    <!-- ================================================== -->
+    <!-- Barra de navegacao -->
+    <!-- ================================================== -->
+    <header>
+      <nav class="navbar navbar-expand-lg navbar-light nav-hotel">
+        <div class="container">
+          <a class="navbar-brand marca-hotel d-flex align-items-center gap-2" href="index.html">
+            <i class="bi bi-building"></i>
+            <span>Gestão do Hotel G</span>
+          </a>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#menuPrincipal" aria-controls="menuPrincipal" aria-expanded="false" aria-label="Abrir menu">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="menuPrincipal">
+            <ul class="navbar-nav ms-auto gap-lg-2">
+              <li class="nav-item"><a class="nav-link link-navegacao" href="index.html">Início</a></li>
+              <li class="nav-item"><a class="nav-link link-navegacao" href="painel.html">Estatísticas</a></li>
+              <li class="nav-item"><a class="nav-link link-navegacao" href="reservas.html">Reservas</a></li>
+              <li class="nav-item"><a class="nav-link link-navegacao" href="quartos.html">Quartos</a></li>
+              <li class="nav-item"><a class="nav-link link-navegacao" href="tarifas.html">Tarifas</a></li>
+            </ul>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <!-- ================================================== -->
+    <!-- CONTEUDO PRINCIPAL -->
+    <!-- ================================================== -->
+    <main class="container">
+      <section class="destaque-secundario hover-suave">
+        <h1 class="h2">Painel de estatísticas</h1>
+        <div class="separador-titulo"></div>
+        <p class="texto-secundario mt-3 mb-0">
+          Bem-vindo à página de estatísticas. Nesta secção é possível acompanhar, de forma resumida, os principais dados relacionados com a ocupação, faturação e 
+          estado das reservas do hotel ao longo do ano de 2025. A informação apresentada apoia a análise do desempenho mensal e facilita o acompanhamento da atividade operacional.
+        </p>
+      </section>
+
+      <section class="mt-4">
+        <div class="row g-3">
+          <div class="col-12 col-sm-6 col-lg-3">
+            <div class="card cartao-indicador p-3 h-100 hover-suave">
+              <div class="d-flex align-items-center gap-2">
+                <i class="bi bi-calendar-range text-muted"></i>
+                <span class="text-uppercase small">Dias reservados</span>
+              </div>
+              <div class="valor" id="indicador-dias-reservados">0</div>
+              <span class="texto-secundario">Total de noites reservadas em 2025</span>
+            </div>
+          </div>
+          <div class="col-12 col-sm-6 col-lg-3">
+            <div class="card cartao-indicador p-3 h-100 hover-suave">
+              <div class="d-flex align-items-center gap-2">
+                <i class="bi bi-cash-stack text-muted"></i>
+                <span class="text-uppercase small">Faturação anual</span>
+              </div>
+              <div class="valor" id="indicador-faturacao-anual">EUR 0,00</div>
+              <span class="texto-secundario">Receita prevista</span>
+            </div>
+          </div>
+          <div class="col-12 col-sm-6 col-lg-3">
+            <div class="card cartao-indicador p-3 h-100 hover-suave">
+              <div class="d-flex align-items-center gap-2">
+                <i class="bi bi-check-circle text-muted"></i>
+                <span class="text-uppercase small">Reservas atualmente em curso</span>
+              </div>
+              <div class="valor" id="indicador-reservas-ativas">0</div>
+              <span class="texto-secundario">Em curso</span>
+            </div>
+          </div>
+          <div class="col-12 col-sm-6 col-lg-3">
+            <div class="card cartao-indicador p-3 h-100 hover-suave">
+              <div class="d-flex align-items-center gap-2">
+                <i class="bi bi-x-circle text-muted"></i>
+                <span class="text-uppercase small">Canceladas</span>
+              </div>
+              <div class="valor" id="indicador-reservas-canceladas">0</div>
+              <span class="texto-secundario">Total de cancelamentos no ano</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="mt-5">
+        <div class="card cartao-informacao p-4 hover-suave">
+          <div class="d-flex flex-wrap align-items-center justify-content-between gap-2">
+            <div>
+              <h2 class="h5">Faturação e ocupação mensal</h2>
+              <div class="separador-titulo"></div>
+            </div>
+            <span class="texto-secundario">Dados calculados com base nas reservas registadas em 2025.</span>
+          </div>
+          <div class="table-responsive tabela-sistema tabela-reservas tabela-scroll mt-3">
+            <table class="table table-borderless align-middle mb-0 tabela-linhas tabela-painel">
+              <colgroup>
+                <col style="width: 20%" />
+                <col style="width: 20%" />
+                <col style="width: 20%" />
+                <col style="width: 20%" />
+                <col style="width: 20%" />
+              </colgroup>
+              <thead>
+                <tr>
+                  <th>Mês</th>
+                  <th>Dias reservados</th>
+                  <th>Faturação</th>
+                  <th>Ocupação</th>
+                  <th>Progresso</th>
+                </tr>
+              </thead>
+              <tbody id="tabela-faturacao-corpo"></tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <!-- ================================================== -->
+    <!-- FOOTER -->
+    <!-- ================================================== -->
+    <footer class="rodape mt-3">
+      <div class="container py-4 text-center">
+        <div class="texto-rodape">© 2025 Hotel G. Todos os direitos reservados.</div>
+      </div>
+    </footer>
+
+    <!-- ================================================== -->
+    <!-- FICHEIROS JS -->
+    <!-- ================================================== -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" defer></script>
+    <script src="js/utils.js" defer></script>
+    <script src="js/dados.js" defer></script>
+    <script src="js/app.js" defer></script>
+    <script src="js/painel.js" defer></script>
+  </body>
+</html>
+
+
+
+
+
