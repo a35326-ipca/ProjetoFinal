@@ -291,14 +291,18 @@ function aplicarErrosFormulario(erros) {
       campo.classList.add("is-invalid");
     }
   });
-
   if (erros.length) {
-    const erroConflito = erros.find((erro) =>
-      String(erro.mensagem || "").toLowerCase().includes("indisponível")
+    const erroCapacidade = erros.find((erro) =>
+      String(erro.mensagem || "").toLowerCase().includes("capacidade")
     );
-    const mensagem = erroConflito
-      ? erroConflito.mensagem
-      : "Introduza os dados que são pedidos, por favor.";
+    const erroConflito = erros.find((erro) =>
+      String(erro.mensagem || "").toLowerCase().includes("indispon?vel")
+    );
+    const mensagem = erroCapacidade
+      ? erroCapacidade.mensagem
+      : erroConflito
+        ? erroConflito.mensagem
+        : erros[0].mensagem || "Introduza os dados que s?o pedidos, por favor.";
     mostrarAlerta("alertas-reservas", mensagem, "danger");
   }
 }
@@ -623,3 +627,5 @@ function apagarReserva(idReserva, elementos) {
   renderizarTabelaReservas(elementos);
   mostrarAlerta("alertas-reservas", "Reserva apagada com sucesso.", "success");
 }
+
+
