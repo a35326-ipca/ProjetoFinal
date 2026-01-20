@@ -298,7 +298,7 @@ function aplicarErrosFormulario(erros) {
     );
     const mensagem = erroConflito
       ? erroConflito.mensagem
-      : "Introduza oss que são pedidos, por favor.";
+      : "Introduza os dados que são pedidos, por favor.";
     mostrarAlerta("alertas-reservas", mensagem, "danger");
   }
 }
